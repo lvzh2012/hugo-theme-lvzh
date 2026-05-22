@@ -1,0 +1,19 @@
+.hero {
+  padding-block: var(--space-3xl) var(--space-2xl);
+}
+
+.hero__title {
+  font-size: clamp(2.5rem, 5vw, 4.5rem);
+  letter-spacing: -0.03em;
+  max-width: 16ch;
+  margin-bottom: var(--space-lg);
+}
+
+.hero__subtitle {
+  font-size: clamp(1.125rem, 2vw, 1.375rem);
+  color: var(--color-text-muted);
+  max-width: 42rem;
+  line-height: 1.6;
+  margin: 0;
+}
+

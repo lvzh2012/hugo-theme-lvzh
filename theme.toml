@@ -1,0 +1,13 @@
+name = "Lvzh"
+license = "MIT"
+licenselink = "https://github.com/lvzh2012/hugo-theme-lvzh/blob/main/LICENSE"
+description = "A minimal editorial Hugo theme with warm cream palette, serif + sans typography, and clean reading experience."
+homepage = "https://github.com/lvzh2012/hugo-theme-lvzh"
+demosite = "https://lvzh2012.github.io/"
+tags = ["blog", "minimal", "editorial", "responsive", "chinese", "cjk", "reading"]
+features = ["responsive", "table-of-contents", "pagination", "cover-images", "reading-progress", "back-to-top", "mobile-menu"]
+min_version = "0.146.0"
+
+[author]
+  name = "Lv·Z·H"
+  homepage = "https://github.com/lvzh2012"

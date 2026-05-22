@@ -1,0 +1,52 @@
+.list-page {
+  padding-bottom: var(--space-3xl);
+}
+
+.list-page__posts {
+  display: flex;
+  flex-direction: column;
+}
+
+.pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-md);
+  margin-top: var(--space-2xl);
+  padding-top: var(--space-xl);
+}
+
+.pagination__link,
+.pagination__current {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 2.5rem;
+  min-height: 2.5rem;
+  padding: 0 var(--space-md);
+  font-size: 0.9375rem;
+  text-decoration: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background var(--transition), color var(--transition);
+}
+
+.pagination__link {
+  color: var(--color-text-muted);
+}
+
+.pagination__link:hover {
+  background: var(--color-bg-soft);
+  color: var(--color-text);
+}
+
+.pagination__current {
+  background: var(--color-text);
+  color: var(--color-bg);
+  font-weight: 600;
+}
+
+.pagination__disabled {
+  color: var(--color-border);
+  cursor: default;
+}

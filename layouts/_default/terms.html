@@ -1,0 +1,32 @@
+{{ define "main" }}
+<section class="list-page page-container">
+  <header class="page-header">
+    <h1 class="page-header__title">
+      {{ if eq .Data.Plural "categories" }}分类{{ else if eq .Data.Plural "tags" }}标签{{ else }}{{ .Title }}{{ end }}
+    </h1>
+    <p class="page-header__desc">共 {{ len .Data.Terms }} 项</p>
+  </header>
+
+  <div class="list-page__posts">
+    {{ range .Data.Terms.Alphabetical }}
+    <article class="post-card">
+      <h2 class="post-card__title">
+        <a href="{{ .Page.RelPermalink }}">{{ .Page.Title }}</a>
+      </h2>
+      <div class="post-card__meta">
+        <div class="post-card__meta-item">
+          <span class="post-card__meta-label">Posts</span>
+          <span class="post-card__meta-value">{{ .Count }} 篇</span>
+        </div>
+      </div>
+      <a class="post-card__link" href="{{ .Page.RelPermalink }}">
+        View all
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+          <path d="M5 12h14M13 6l6 6-6 6"/>
+        </svg>
+      </a>
+    </article>
+    {{ end }}
+  </div>
+</section>
+{{ end }}

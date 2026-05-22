@@ -1,0 +1,51 @@
+<article class="post-card{{ if .Params.cover }} post-card--has-cover{{ end }}">
+  <div class="post-card__inner">
+    <div class="post-card__hero">
+      {{ if .Params.cover }}
+      {{ partial "cover-image.html" (dict "page" . "class" "post-card__cover" "loading" "lazy" "link" .RelPermalink) }}
+      {{ end }}
+
+      <div class="post-card__head">
+        <h2 class="post-card__title">
+          <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+        </h2>
+
+        {{ with .Summary }}
+        <p class="post-card__excerpt">{{ . | plainify | htmlUnescape | truncate 200 }}</p>
+        {{ end }}
+
+        <div class="post-card__meta">
+          <div class="post-card__meta-item">
+            <span class="post-card__meta-label">Date</span>
+            <time class="post-card__meta-value" datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "2006年1月2日" }}</time>
+          </div>
+
+          {{ with .Params.categories }}
+          <div class="post-card__meta-item">
+            <span class="post-card__meta-label">Category</span>
+            <span class="post-card__meta-value">
+              {{ range $index, $cat := . }}{{ if $index }}, {{ end }}<a href="{{ "categories/" | relLangURL }}{{ $cat | urlize }}/">{{ $cat }}</a>{{ end }}
+            </span>
+          </div>
+          {{ end }}
+
+          {{ with .Params.tags }}
+          <div class="post-card__meta-item">
+            <span class="post-card__meta-label">Tags</span>
+            <span class="post-card__meta-value">
+              {{ range $index, $tag := . }}{{ if $index }}, {{ end }}<a href="{{ "tags/" | relLangURL }}{{ $tag | urlize }}/">{{ $tag }}</a>{{ end }}
+            </span>
+          </div>
+          {{ end }}
+        </div>
+      </div>
+    </div>
+
+    <a class="post-card__link" href="{{ .RelPermalink }}">
+      Read more
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+        <path d="M5 12h14M13 6l6 6-6 6"/>
+      </svg>
+    </a>
+  </div>
+</article>

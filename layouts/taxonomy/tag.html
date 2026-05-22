@@ -1,0 +1,14 @@
+{{ define "main" }}
+<section class="list-page page-container">
+  <header class="page-header">
+    <h1 class="page-header__title">标签：{{ .Title }}</h1>
+    <p class="page-header__desc">共 {{ len .Pages }} 篇文章</p>
+  </header>
+
+  <div class="list-page__posts">
+    {{ range .Pages.ByDate.Reverse }}
+      {{ partial "post-card.html" . }}
+    {{ end }}
+  </div>
+</section>
+{{ end }}

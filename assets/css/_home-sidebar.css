@@ -1,0 +1,111 @@
+/* Home layout: posts + right sidebar */
+.home-layout {
+  display: block;
+  padding-bottom: var(--space-3xl);
+}
+
+.home-posts {
+  padding-bottom: 0;
+}
+
+.home-posts__list {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.post-card-wrapper {
+  scroll-margin-top: calc(var(--header-height) + var(--space-md));
+}
+
+.post-card-wrapper.is-highlighted .post-card {
+  background: var(--color-bg-soft);
+  border-radius: 8px;
+  padding-inline: var(--space-md);
+  margin-inline: calc(var(--space-md) * -1);
+  transition: background var(--transition);
+}
+
+/* Right sidebar */
+.home-sidebar {
+  display: none;
+}
+
+.home-sidebar__label {
+  margin: 0 0 var(--space-md);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+}
+
+.home-sidebar__nav {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.home-sidebar__item {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-sm);
+  padding: var(--space-xs) var(--space-sm);
+  border-radius: 6px;
+  font-size: 0.8125rem;
+  line-height: 1.4;
+  text-decoration: none;
+  color: var(--color-text-muted);
+  cursor: pointer;
+  transition: background var(--transition), color var(--transition);
+}
+
+.home-sidebar__item:hover,
+.home-sidebar__item.is-active {
+  background: var(--color-bg-soft);
+  color: var(--color-text);
+}
+
+.home-sidebar__item.is-active {
+  color: var(--color-accent);
+}
+
+.home-sidebar__title {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.home-sidebar__date {
+  flex-shrink: 0;
+  font-size: 0.75rem;
+  color: var(--color-text-muted);
+  font-variant-numeric: tabular-nums;
+}
+
+@media (min-width: 1024px) {
+  .home-layout {
+    display: grid;
+    grid-template-columns: 1fr 200px;
+    gap: var(--space-2xl);
+    align-items: start;
+  }
+
+  .home-sidebar {
+    display: block;
+    position: sticky;
+    top: calc(var(--header-height) + var(--space-lg));
+    max-height: calc(100vh - var(--header-height) - var(--space-2xl));
+    overflow-y: auto;
+  }
+}
+
+@media (min-width: 1280px) {
+  .home-layout {
+    grid-template-columns: 1fr 240px;
+    gap: var(--space-3xl);
+  }
+}

@@ -1,0 +1,38 @@
+<header class="site-header">
+  <div class="page-container site-header__inner">
+    <a class="site-logo" href="{{ "/" | relLangURL }}">{{ .Site.Title }}</a>
+
+    <nav class="site-nav" aria-label="主导航">
+      <div class="site-nav__desktop">
+        {{ range .Site.Menus.main }}
+        <a
+          class="site-nav__link{{ if or ($.IsMenuCurrent "main" .) ($.HasMenuCurrent "main" .) }} is-active{{ end }}"
+          href="{{ .URL | relLangURL }}"
+        >{{ .Name }}</a>
+        {{ end }}
+      </div>
+
+      <details class="site-nav__toggle">
+        <summary class="site-nav__toggle-label" aria-label="打开菜单">
+          菜单
+          <svg class="site-nav__toggle-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <path d="M4 7h16M4 12h16M4 17h16"/>
+          </svg>
+        </summary>
+        <div class="site-nav__mobile">
+          {{ range .Site.Menus.main }}
+          <a
+            class="site-nav__link{{ if or ($.IsMenuCurrent "main" .) ($.HasMenuCurrent "main" .) }} is-active{{ end }}"
+            href="{{ .URL | relLangURL }}"
+          >{{ .Name }}</a>
+          {{ end }}
+        </div>
+      </details>
+    </nav>
+  </div>
+  {{ if eq .Section "posts" }}
+  <div class="reading-progress" aria-hidden="true">
+    <div class="reading-progress__bar"></div>
+  </div>
+  {{ end }}
+</header>

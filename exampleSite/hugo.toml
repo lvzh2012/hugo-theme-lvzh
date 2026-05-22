@@ -1,0 +1,60 @@
+baseurl = "https://example.com/"
+languageCode = "zh-CN"
+title = "Lvzh Theme Demo"
+theme = "hugo-theme-lvzh"
+
+copyright = "Copyright © 2024-2026 Lv·Z·H"
+rssLimit = 20
+
+defaultContentLanguage = "zh"
+hasCJKLanguage = true
+
+[pagination]
+  pagerSize = 12
+
+[permalinks]
+  posts = "/posts/:slug.html"
+
+[taxonomies]
+  tag = "tags"
+  category = "categories"
+
+[outputs]
+  home = ["HTML", "RSS"]
+
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true
+  [markup.tableOfContents]
+    startLevel = 2
+    endLevel = 3
+    ordered = false
+
+[menu]
+  [[menu.main]]
+    name = "Home"
+    url = "/"
+    weight = 1
+
+  [[menu.main]]
+    name = "Categories"
+    url = "/categories/"
+    weight = 2
+
+  [[menu.main]]
+    name = "Tags"
+    url = "/tags/"
+    weight = 3
+
+  [[menu.main]]
+    name = "About"
+    url = "/about/"
+    weight = 4
+
+[params]
+  description = "A minimal editorial Hugo theme"
+  author = "Lv·Z·H"
+
+  [params.hero]
+    subtitle = "Clean reading experience with warm editorial design"

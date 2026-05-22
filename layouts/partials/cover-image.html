@@ -1,0 +1,20 @@
+{{/*
+  Renders cover from front matter `cover`.
+  Usage: {{ partial "cover-image.html" (dict "page" . "class" "post-cover" "loading" "eager" "link" .RelPermalink) }}
+*/}}
+{{ $page := .page }}
+{{ with $page.Params.cover }}
+  {{ $src := . }}
+  {{ if not (or (hasPrefix $src "http://") (hasPrefix $src "https://") (hasPrefix $src "//")) }}
+    {{ $src = $src | relURL }}
+  {{ end }}
+  {{ if $.link }}
+  <a class="{{ $.class }}" href="{{ $.link }}">
+    <img src="{{ $src }}" alt="{{ $page.Title }}" loading="{{ $.loading | default "lazy" }}" decoding="async">
+  </a>
+  {{ else }}
+  <figure class="{{ $.class }}">
+    <img src="{{ $src }}" alt="{{ $page.Title }}" loading="{{ $.loading | default "lazy" }}" decoding="async">
+  </figure>
+  {{ end }}
+{{ end }}

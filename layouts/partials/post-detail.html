@@ -1,0 +1,95 @@
+<article class="post-page">
+  <div class="post-page__layout page-container">
+    {{ if .TableOfContents }}
+    <aside class="post-toc" aria-label="文章目录">
+      <div class="post-toc__header">
+        <p class="post-toc__label">目录</p>
+        <button type="button" class="post-toc__toggle" aria-label="收起目录" aria-expanded="true" aria-controls="post-toc-nav">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <path d="M15 18l-6-6 6-6"/>
+          </svg>
+        </button>
+      </div>
+      <nav class="post-toc__nav" id="post-toc-nav">
+        {{ .TableOfContents }}
+      </nav>
+    </aside>
+    <button type="button" class="post-toc-expand" aria-label="展开目录" hidden>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+        <path d="M9 18l6-6-6-6"/>
+      </svg>
+    </button>
+    {{ end }}
+
+    <div class="post-page__main">
+      <header class="post-page__header">
+        <h1 class="post-page__title">{{ .Title }}</h1>
+        <div class="post-page__meta">
+          <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "2006年1月2日" }}</time>
+          {{ with .Params.categories }}
+          <span>
+            {{ range $index, $cat := . }}{{ if $index }}, {{ end }}<a href="{{ "categories/" | relLangURL }}{{ $cat | urlize }}/">{{ $cat }}</a>{{ end }}
+          </span>
+          {{ end }}
+          {{ with .Params.tags }}
+          <span>
+            {{ range $index, $tag := . }}{{ if $index }}, {{ end }}<a href="{{ "tags/" | relLangURL }}{{ $tag | urlize }}/">{{ $tag }}</a>{{ end }}
+          </span>
+          {{ end }}
+        </div>
+      </header>
+
+      {{ partial "cover-image.html" (dict "page" . "class" "post-cover" "loading" "eager") }}
+
+      {{ if .TableOfContents }}
+      <details class="post-toc-mobile">
+        <summary class="post-toc-mobile__summary">目录</summary>
+        <nav class="post-toc-mobile__nav">
+          {{ .TableOfContents }}
+        </nav>
+      </details>
+      {{ end }}
+
+      <div class="prose">
+        {{ .Content }}
+      </div>
+
+      {{ with .PrevInSection }}
+      <nav class="post-nav" aria-label="文章导航">
+        <div class="post-nav__item">
+          <span class="post-nav__label">上一篇</span>
+          <a class="post-nav__link" href="{{ .RelPermalink }}">{{ .Title }}</a>
+        </div>
+        {{ with $.NextInSection }}
+        <div class="post-nav__item post-nav__item--next">
+          <span class="post-nav__label">下一篇</span>
+          <a class="post-nav__link" href="{{ .RelPermalink }}">{{ .Title }}</a>
+        </div>
+        {{ else }}
+        <div></div>
+        {{ end }}
+      </nav>
+      {{ else }}
+      {{ with .NextInSection }}
+      <nav class="post-nav" aria-label="文章导航">
+        <div></div>
+        <div class="post-nav__item post-nav__item--next">
+          <span class="post-nav__label">下一篇</span>
+          <a class="post-nav__link" href="{{ .RelPermalink }}">{{ .Title }}</a>
+        </div>
+      </nav>
+      {{ end }}
+      {{ end }}
+    </div>
+  </div>
+</article>
+
+<button class="back-to-top" type="button" aria-label="回到顶部" hidden>
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+    <path d="M12 19V5M5 12l7-7 7 7"/>
+  </svg>
+</button>
+
+{{ with resources.Get "js/post-page.js" | minify | fingerprint }}
+<script src="{{ .RelPermalink }}" defer></script>
+{{ end }}

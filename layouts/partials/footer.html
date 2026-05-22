@@ -1,0 +1,10 @@
+<footer class="site-footer">
+  <div class="page-container site-footer__inner">
+    <p class="site-footer__copy">{{ .Site.Copyright }}</p>
+    <nav class="site-footer__links" aria-label="页脚导航">
+      {{ range .Site.Menus.main }}
+      <a class="site-footer__link" href="{{ .URL | relLangURL }}">{{ .Name }}</a>
+      {{ end }}
+    </nav>
+  </div>
+</footer>
