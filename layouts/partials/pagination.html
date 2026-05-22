@@ -1,17 +1,15 @@
 {{ with .Paginator }}
+{{ if or .HasPrev .HasNext }}
 <nav class="pagination" aria-label="分页">
   {{ if .HasPrev }}
   <a class="pagination__link" href="{{ .Prev.URL }}" rel="prev">上一页</a>
-  {{ else }}
-  <span class="pagination__link pagination__disabled" aria-hidden="true">上一页</span>
   {{ end }}
 
   <span class="pagination__current">{{ .PageNumber }} / {{ .TotalPages }}</span>
 
   {{ if .HasNext }}
   <a class="pagination__link" href="{{ .Next.URL }}" rel="next">下一页</a>
-  {{ else }}
-  <span class="pagination__link pagination__disabled" aria-hidden="true">下一页</span>
   {{ end }}
 </nav>
+{{ end }}
 {{ end }}
